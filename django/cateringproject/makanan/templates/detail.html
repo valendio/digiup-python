@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% block content %}
+
+<body>
+
+<div class="card">
+    <img alt="" class="card-img-top" src="{{ makanan.gambar.url }}" width=350px height=350px/>
+    <div class="card-body">
+        <h4 class="card-title fw-normal">
+            {{ makanan.nama }}
+        </h4>
+        <h6 class="card-title fw-bold">
+            {{ makanan.harga }}
+        </h6>
+        <p class="card-text">
+            Catering {{ makanan.kantin }}
+            <br/>
+            Stok : {{ makanan.stok }}
+        </p>
+    </div>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="elem-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="in-name" name="buyer_name" placeholder="Oryza V" pattern=[A-Z\sa-z]{3,20} required>
+        </div>
+        <div class="elem-group">
+          <label for="email">Your E-mail</label>
+          <input type="email" id="in-email" name="buye_email" placeholder="oryzav@email.com" required/>
+        </div>
+        <div class="elem-group">
+          <label for="phone">Your Phone</label>
+          <input type="number" id="in-nomor" name="phone" placeholder="08213189268" pattern=(\d{3})-?\s?(\d{3})-?\s?(\d{4})>
+        </div>
+        <div class="elem-group">
+            <label for="jumlah">Jumlah Pesanan</label>
+            <input type="number" id="in-jumlah" name="jumlah" placeholder="1" pattern=(\d{3})-?\s?(\d{3})-?\s?(\d{4})>
+          </div>
+        <div class="elem-group">
+            <label for="tanggal">Tanggal Pengiriman</label>
+            <input type="date" id="in-tanggal" name="tanggal" required/>
+          </div>
+        <hr/>
+        <div class="elem-group">
+          <label for="area">Pilih Area</label>
+          <select id="in-area" name="area" required>
+              <option value="">Pilih area antar</option>
+              <option value="Kedungkandang">Kedungkandang</option>
+              <option value="Sukun">Sukun</option>
+              <option value="Blimbing">Blimbing</option>
+          </select>
+        </div>
+        <hr/>
+        <div class="elem-group">
+          <label for="alamat">Alamat Lengkap</label>
+          <textarea id="in-alamat" name="buyer_alamat" placeholder="Masukkan Alamat lengkap anda" required></textarea>
+        </div>
+        <div class="button">
+            <input id="pesan" type="submit" value="Pesan" onclick="printId"/>
+        </div>
+    </form>
+      <style>
+        body {
+            width: 80%%;
+            margin: 0 auto;
+            padding: 50px;
+          }
+          
+          div.elem-group {
+            margin: 20px 0;
+          }
+          
+          label {
+            display: block;
+            font-family: 'Nanum Gothic';
+            padding-bottom: 10px;
+            font-size: 1.25em;
+          }
+          
+          input, select, textarea {
+            border-radius: 2px;
+            border: 2px solid #777;
+            box-sizing: border-box;
+            font-size: 1.25em;
+            font-family: 'Nanum Gothic';
+            width: 100%;
+            padding: 10px;
+          }
+          
+          textarea {
+            height: 250px;
+          }
+          
+          hr {
+            border: 1px dotted #ccc;
+          }
+          
+          button {
+            height: 50px;
+            background: orange;
+            border: none;
+            color: white;
+            font-size: 1.25em;
+            font-family: 'Nanum Gothic';
+            border-radius: 4px;
+            cursor: pointer;
+          }
+          
+          button:hover {
+            border: 2px solid black;
+          }
+      </style>
+
+      <script>
+        var currentDateTime = new Date();
+var year = currentDateTime.getFullYear();
+var month = (currentDateTime.getMonth() + 1);
+var date = (currentDateTime.getDate() + 1);
+
+if(date < 10) {
+  date = '0' + date;
+}
+if(month < 10) {
+  month = '0' + month;
+}
+
+var dateTomorrow = year + "-" + month + "-" + date;
+      </script>
+
+</div>
+
+{% endblock content %}
+</body>

@@ -1,0 +1,24 @@
+from django.db import models
+from django.core.validators import RegexValidator
+
+# Create your models here.
+class Catering(models.Model):
+    nama = models.CharField(max_length=250)
+    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="min 8 digit")
+    telpon = models.CharField(validators=[phone_regex], max_length=15, blank=True)
+    def __str__(self) -> str:
+        return self.nama
+
+class Makanan(models.Model):
+    nama = models.CharField(max_length=250)
+    harga = models.IntegerField()
+    gambar = models.ImageField(upload_to='makanan/images/')
+    stok = models.IntegerField()
+    Catering = models.ForeignKey(Catering, on_delete=models.CASCADE)
+    TERSEDIA = (
+        ('1', 'Tersedia'),
+        ('2', 'Tidak tersedia')
+    )
+    tersedia = models.CharField(max_length=1, choices=TERSEDIA)
+    def __str__(self) -> str:
+        return self.nama

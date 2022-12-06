@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card">
+    <img alt="" class="card-img-top" src="{{ makanan.gambar.url }}" width=500px height=500px/>
+    <div class="card-body">
+        <h4 class="card-title fw-normal">
+            {{ makanan.nama }}
+        </h4>
+        <h6 class="card-title fw-bold">
+            {{ makanan.harga }}
+        </h6>
+        <p class="card-text">
+            Kantin {{ makanan.kantin }}
+            <br/>
+            Stok : {{ makanan.stok }}
+        </p>
+    </div>
+</div>
+
+{% endblock content %}

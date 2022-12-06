@@ -1,0 +1,6 @@
+- rule:
+    name: H030, H031
+    message: Find Trichotillomania
+    flags: re.DOTALL|re.I
+    patterns:
+      - Trichotillomania
